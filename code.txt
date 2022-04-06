@@ -1,0 +1,91 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+    static String arr[][];
+    Map<Integer,String> map;
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+
+        map=new HashMap<>();
+        map.put(0,"late");
+        map.put(1,"pate");
+        map.put(2,"pare");
+        map.put(3,"parse");
+        map.put(4,"rate");
+        map.put(5,"tales");
+        map.put(6,"east");
+        map.put(7,"alerts");
+        map.put(8,"post");
+        map.put(9,"alerting");
+        map.put(10,"steak");
+        map.put(11,"live");
+        map.put(12,"meat");
+        map.put(13,"insert");
+        map.put(14,"laser");
+        map.put(15,"lapse");
+        map.put(16,"angle");
+        map.put(17,"super");
+        map.put(18,"scrape");
+        map.put(19,"retains"9);
+
+        arr={{"tale", "teal"},{"peat", "tape"},{"pear", "reap"},{"asper", "pares", "pears", "prase"},{"tare", "tear"},
+                    {"stale", "slate", "tesla", "steal", "least"},{"sate", "seat", "seta", "teas"},{"alters", "artels"," estral", "laster", "ratels", "salter", "slater", "staler"},
+                    {"pots", "spot", "stop", "tops"},{"altering", "integral", "relating", "triangle"},{"skate"," stake", "takes"},
+                    {"evil", "veil", "vile"},{"mate", "team", "tame"},{"estrin", "inerts", "inters", "niters", "nitres", "sinter", "triens", "trines"},
+                    {"earls", "reals", "rales", "lares"},{"peals", "pleas", "pales", "sepal"},{"angel", "glean", "genal"},{"purse", "sprue"},
+                    {"capers", "crapes", "spacer", "pacers"},{"stainer", "starnie", "resiant", "nastier", "retinas"}};
+        
+        Level1();
+    }
+    static void Level1(){
+        System.out.println("Welcomes you to level-1 of the game")
+        boolean flag=false;
+        for(int k=0;k<2;k++){
+            int num=(int)(Math.random()*20);
+
+            String str=map.get(num);
+
+            System.out.println("Please write the Anagram of The string :- "+str);
+            String ss[]=sc.nextLine().split(" ");
+
+            List<String> correct=new ArrayList<>();
+            List<String> InCorrect=new ArrayList<>();
+
+            for(String ab1:ss){
+
+                boolean ok=false;
+                for(String ab2:arr[num]){
+                    if(ab1.equals(ab2)){
+                        ok=true;
+                        break;
+                    }
+                }
+                if(ok) correct.add(ab1);
+                else InCorrect.add(ab1);
+            }
+
+            System.out.println();
+            System.out.print("Valid Anagram That you enter are:- ");
+            for(String ss:correct){
+                System.out.print(ss+" ");
+            }
+            System.out.println("\n");
+
+            System.out.print("The number of Invalid Anagram That you enter are:- ");
+            for(String ss:InCorrect){
+                System.out.print(ss+" ");
+            }
+            System.out.println("\n");
+
+
+            if(correct.size()>=2){
+                System.out.print("“Congratulations! You completed level 1 successfully");
+                flag=true;
+                break;
+            }
+            else{
+                System.out.print("“Fail! at least two input words must be valid");
+            }
+        }
+    }
+}

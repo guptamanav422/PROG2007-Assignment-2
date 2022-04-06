@@ -1,3 +1,4 @@
+
 import java.util.*;
 import java.io.*;
 public class Main {
@@ -35,17 +36,29 @@ public class Main {
                     {"earls", "reals", "rales", "lares"},{"peals", "pleas", "pales", "sepal"},{"angel", "glean", "genal"},{"purse", "sprue"},
                     {"capers", "crapes", "spacer", "pacers"},{"stainer", "starnie", "resiant", "nastier", "retinas"}};
         
+        System.out.println("Welcomes to \" The Word And Number Game\" ");
         Level1(arr);
     }
     static void Level1(String arr[][]){
-        System.out.println("Welcomes you to level-1 of the game");
+        
+        System.out.println("\n***********************************************************************\n");
+        System.out.println("Level 1: Anagram");
         boolean flag=false;
         for(int k=0;k<2;k++){
             int num=(int)(Math.random()*20);
 
             String str=map.get(num);
 
-            System.out.println("Please write the Anagram of The string :- "+str);
+            System.out.println("Your Letters: ");
+            for(char ch:str.toCharArray()){
+                System.out.print(ch+" ");
+            }
+            
+            System.out.println();
+            System.out.println("Please give your input");
+            if(k==1){
+                System.out.println("( Second Chance )");
+            }
             String ss[]=sc.nextLine().split(" ");
 
             List<String> correct=new ArrayList<>();
@@ -63,18 +76,6 @@ public class Main {
                 if(ok) correct.add(ab1);
                 else InCorrect.add(ab1);
             }
-
-            System.out.println();
-            System.out.print("Valid Anagrams That you enter are:- ");
-            for(String sss:correct){
-                System.out.print(sss+" ");
-            }
-            System.out.println("\n");
-
-            System.out.print("Invalid Anagrams That you enter are:- ");
-            for(String sss:InCorrect){
-                System.out.print(sss+" ");
-            }
             System.out.println("\n");
 
 
@@ -84,8 +85,89 @@ public class Main {
                 break;
             }
             else{
-                System.out.println("“Fail! at least two input words must be valid");
+                System.out.println("Fail ! at least two inputted word must be valid");
+                System.out.print("Your words: ");
+                for(String sss:InCorrect){
+                    System.out.print(sss+" ");
+                }
+                System.out.println("are invalid");
             }
+        }
+        
+        
+        System.out.println("\n***********************************************************************\n");
+        
+        if(flag){
+            level2(arr);
+        }
+    }
+    static void level2(String arr[][]){
+        System.out.println("\n***********************************************************************\n");
+        System.out.println("Level 2: Scrambled Words");
+        boolean flag=false;
+        for(int k=0;k<2;k++){
+            
+            Set<Integer> set=new HashSet<>();
+            System.out.println("Your scrambled words: ");
+            List<String> correct=new ArrayList<>();
+            for(int i1=0;i1<5;i1++){
+                
+                int num=(int)(Math.random()*20);
+                if(set.contains(num)){
+                    i1--;
+                }
+                else{
+                    
+                    char abc[]=map.get(num).toCharArray();
+                    for(int i=1;i<abc.length;i+=2){
+                        char ch=abc[i];
+                        abc[i]=abc[i-1];
+                        abc[i-1]=ch;
+                    }
+                    String ss="";
+                    for(char ch:abc) ss+=ch;
+                    System.out.print(ss+" ");
+                    correct.add(map.get(num));
+                }
+                set.add(num);
+            }
+            System.out.println();
+            System.out.println("Please give your input");
+            if(k==1){
+                System.out.println("( Second Chance )");
+            }
+            String ss[]=sc.nextLine().split(" ");
+
+            List<String> InCorrect=new ArrayList<>();
+
+            for(int i=0;i<5;i++){
+
+                boolean ok=ss[i].equals(correct.get(i));
+                if(!ok) InCorrect.add(ss[i]);
+            }
+            System.out.println("\n");
+
+
+            if(InCorrect.size()<3){
+                System.out.println("“Congratulations! You completed level 2 successfully");
+                flag=true;
+                break;
+            }
+            else{
+                System.out.println("Fail ! at least three inputted word must be valid");
+                System.out.print("Your words: ");
+                for(String sss:InCorrect){
+                    System.out.print(sss+" ");
+                }
+                System.out.println("are invalid");
+            }
+        }
+        
+        
+        System.out.println("\n***********************************************************************\n");
+        
+        if(flag){
+            // level3(arr);
         }
     }
 }
